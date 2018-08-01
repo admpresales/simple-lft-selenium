@@ -24,10 +24,13 @@
         This is for making use of the selenium extentions provided by lft.
         Example would be the extention of using the new object attributes such as "visibleText"
         The LeanFT agent is not needed to use these.
+        Maven location: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22leanft-selenium-java-sdk%22
+
+        Open source location: https://github.com/MicroFocus/leanft-selenium-java-sdk
         -->
         <dependency>
-            <groupId>com.hpe.lft</groupId>
-            <artifactId>selenium-sdk</artifactId>
+            <groupId>com.microfocus.adm.leanft</groupId>
+            <artifactId>leanft-selenium-java-sdk</artifactId>
             <version>RELEASE</version>
         </dependency>
 
