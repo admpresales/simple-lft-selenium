@@ -106,6 +106,7 @@ public class SeleniumTest  {
                         By.visibleText(Pattern.compile("\\$1,00\\d\\.\\d\\d"))
                         ));
 
+            Utils.highlight(we);
             Verify.areEqual ("$1,009.99", we.getText());
             Verify.areEqual ("$1,009.00", we.getText(), "Price Verification","Verify price displayed matches price expected", Utils.getSnapshot(we));
 
