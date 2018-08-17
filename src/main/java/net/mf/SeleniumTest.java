@@ -29,15 +29,15 @@ public class SeleniumTest  {
     }
 
     @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {
+    public static void tearDownAfterClass() {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         // initialize the SDK and report only once per process
         // this needs to be done since you are using a different framework than LFT.
         // More info at https://admhelp.microfocus.com/leanft/en/14.03/HelpCenter/Content/HowTo/CustomFrameworks.htm
@@ -97,7 +97,7 @@ public class SeleniumTest  {
             we = driver.findElement(By.id("accordionPrice"));
             we.click();
 
-            Utils.highlight(we);
+            Utils.highlight(we, 1000);
             RenderedImage snapshot = Utils.getSnapshot(we);
             Reporter.reportEvent("Accordion Price", "", Status.Passed,snapshot);
 
@@ -106,7 +106,7 @@ public class SeleniumTest  {
                         By.visibleText(Pattern.compile("\\$1,00\\d\\.\\d\\d"))
                         ));
 
-            Utils.highlight(we);
+            Utils.highlight(we,1000);
             Verify.areEqual ("$1,009.99", we.getText());
             Verify.areEqual ("$1,009.00", we.getText(), "Price Verification","Verify price displayed matches price expected", Utils.getSnapshot(we));
 
