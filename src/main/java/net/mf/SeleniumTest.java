@@ -73,7 +73,9 @@ public class SeleniumTest  {
         System.setProperty("webdriver.chrome.driver", "./2.36/chromedriver");
         ChromeOptions co = new ChromeOptions();
         co.addExtensions(new File("/opt/leanft/Installations/Chrome/Agent.crx")); // path to agent on my linux yours may differ
+        co.addArguments("disable-infobars");
         WebDriver driver = new ChromeDriver(co);
+        //driver.manage().window().setSize(new Dimension(945, 850));
 
         WebDriverWait w = new WebDriverWait(driver,20);
         w.ignoring(NoSuchElementException.class);
@@ -106,8 +108,9 @@ public class SeleniumTest  {
                         By.visibleText(Pattern.compile("\\$1,00\\d\\.\\d\\d"))
                         ));
 
-            Utils.highlight(we,1000);
-            Verify.areEqual ("$1,009.99", we.getText());
+            Utils.highlight(we, 1000);
+
+            Verify.areEqual("$1,009.99", we.getText());
             Verify.areEqual ("$1,009.00", we.getText(), "Price Verification","Verify price displayed matches price expected", Utils.getSnapshot(we));
 
 
