@@ -1,18 +1,16 @@
 package net.mf;
-import static org.junit.Assert.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.net.URI;
-
-import org.junit.*;
-import org.openqa.selenium.support.pagefactory.ByChained;
-import org.openqa.selenium.*;
-import com.hpe.leanft.selenium.By;
-import com.hpe.leanft.selenium.ByEach;
 import java.util.regex.Pattern;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.*;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.pagefactory.ByChained;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.ui.*;
@@ -22,12 +20,15 @@ import com.hp.lft.sdk.web.*;
 import com.hp.lft.report.*;
 import com.hp.lft.verifications.*;
 import com.hpe.leanft.selenium.Utils;
+import com.hpe.leanft.selenium.By;
+import com.hpe.leanft.selenium.ByEach;
 
 
 public class SeleniumTest {
     //private static String TEST_URL = "http://www.advantageonlineshopping.com";
     private static String TEST_URL = "http://nimbusserver:8000/";
 
+    private static WebDriver driver;
     public SeleniumTest() {
         //Change this constructor to private if you supply your own public constructor
     }
@@ -71,13 +72,14 @@ public class SeleniumTest {
     public void test() throws Exception {
         WebElement we;
 
-        // Location of where your chromedriver is locate.
-        // If you don't use the setPropery, then you will need to have chromedriver in your system path
-        System.setProperty("webdriver.chrome.driver", "./2.41/chromedriver");
+        WebDriverManager.chromedriver().forceCache();
+        //To force a specific driver version use
+        //WebDriverManager.chromedriver("2.42").setup();
+        WebDriverManager.chromedriver().setup();
         ChromeOptions co = new ChromeOptions();
-        co.addExtensions(new File("/opt/leanft/Installations/Chrome/Agent.crx")); // path to agent on my linux yours may differ
+        co.addExtensions(new File("/opt/leanft/Installations/Chrome/Agent.crx")); // path to agent on my linux yours may differ, not required in all cases but this is forcing the agent to be loaded
         co.addArguments("disable-infobars"); // disables the annoying notification from Chrome that an automated tool is driving the browser
-        WebDriver driver = new ChromeDriver(co);
+        driver = new ChromeDriver(co);
         //driver.manage().window().setSize(new Dimension(945, 850));
 
         WebDriverWait w = new WebDriverWait(driver, 20);
@@ -92,16 +94,17 @@ public class SeleniumTest {
             // This line is using the Micro Focus  extension of Selenium through the new attribute 'visibleText'
             // I often find the WebDriverWait to be not very reliable and often I need to put in Thread.sleep ()
             w.until(visibilityOfElementLocated(By.visibleText("TABLETS")));  //this is one way to sync on objects in Selenium
-
-            driver.findElement(By.visibleText("TABLETS")).click();
-
+            we = driver.findElement(By.visibleText("TABLETS"));
+            Utils.highlight(we, 1000);
+            we.click();
 
             // This line is using normal Selenium attributes
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             w.until(visibilityOfElementLocated(By.id("accordionPrice")));  //this is one way to sync on objects in Selenium
             we = driver.findElement(By.id("accordionPrice"));
             we.click();
 
+            w.until(visibilityOfElementLocated(By.id("accordionPrice")));  //this is one way to sync on objects in Selenium
             Utils.highlight(we, 1000);
             RenderedImage snapshot = Utils.getSnapshot(we);
             Reporter.reportEvent("Accordion Price", "", Status.Passed, snapshot);
