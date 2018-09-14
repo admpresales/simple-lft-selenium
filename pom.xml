@@ -1,23 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.hpe</groupId>
+    <groupId>net.mf</groupId>
     <artifactId>simplelftselenium</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>LeanFT Selenium JUnit Test</name>
     <description>LeanFT Selenium JUnit Test</description>
 
+    <properties>
+        <junit.ver>4.12</junit.ver>
+        <se.ver>2.53.1</se.ver>
+        <webdrivermanager.ver>3.0.0</webdrivermanager.ver>
+        <slf4j.ver>1.7.25</slf4j.ver>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.ver}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.5.2</version>
+            <version>${se.ver}</version>
         </dependency>
 
         <!--
@@ -72,7 +79,19 @@
             <artifactId>verifications</artifactId>
             <version>RELEASE</version>
         </dependency>
-
+        <dependency>
+            <!-- https://github.com/bonigarcia/webdrivermanager#webdrivermanager-as-java-dependency
+                   https://stackoverflow.com/questions/7450416/selenium-2-chrome-driver
+             -->
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.ver}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -82,15 +101,29 @@
                     <url>URL of the repository containing the LeanFT jar files</url>
             </repository>-->
     </repositories>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>RunResults/</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>
