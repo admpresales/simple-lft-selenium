@@ -74,8 +74,9 @@ public class SeleniumTest {
 
         WebDriverManager.chromedriver().forceCache();
         //To force a specific driver version use
-        //WebDriverManager.chromedriver("2.42").setup();
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().version("2.41").setup();
+        //To always use the latest version use
+        // WebDriverManager.chromedriver().setup();
         ChromeOptions co = new ChromeOptions();
         co.addExtensions(new File("/opt/leanft/Installations/Chrome/Agent.crx")); // path to agent on my linux yours may differ, not required in all cases but this is forcing the agent to be loaded
         co.addArguments("disable-infobars"); // disables the annoying notification from Chrome that an automated tool is driving the browser
