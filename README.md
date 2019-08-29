@@ -1,10 +1,9 @@
 # simple-lft-selenium
 
-# Usage
-This is a simple script to show using a Selenium test being augmented with LeanFT.
-
+# Description
+This is a simple script to show using a Selenium test being augmented with LeanFT.<br>
 It is also a very good example of how to use LeanFT reporting.
-
+# Usage
 This script has been run using the Chrome driver 2.41.  You can choose others too but just be aware i havent verified it against others.
 
 **NOTE:** You need to be connected to the internet the first time this is executed so the chromewebdriver gets cached to your .m2 cache
