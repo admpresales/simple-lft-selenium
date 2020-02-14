@@ -31,4 +31,4 @@ More details about the utility can be found:
 * https://github.com/bonigarcia/webdrivermanager#webdrivermanager-as-java-dependency
 * https://stackoverflow.com/questions/7450416/selenium-2-chrome-driver
 
-## Prior to UFT renaming in 2019 was called simple-lft-selenium
+##### Prior to UFT renaming in 2019 was called simple-lft-selenium
