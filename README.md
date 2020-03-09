@@ -1,6 +1,9 @@
-# LeanFT & Selenium
-This is a simple script to show using a Selenium test being augmented with LeanFT.
+# simple-lft-selenium
 
+# Description
+This is a simple script to show using a Selenium test being augmented with LeanFT.<br>
+It is also a very good example of how to use LeanFT reporting.
+# Usage
 This script has been run using the Chrome driver 2.41.  You can choose others too but just be aware i havent verified it against others.
 
 **NOTE:** You need to be connected to the internet the first time this is executed so the chromewebdriver gets cached to your .m2 cache
@@ -21,6 +24,17 @@ Check which versions of libraries you have available and make the appropriate ch
         <se.ver>3.14.0</se.ver>
         <webdrivermanager.ver>3.0.0</webdrivermanager.ver>
         <slf4j.ver>1.7.25</slf4j.ver>
+```
+## Overview
+The test starts by using LeanFT for Selenium, then connects using "pure" LeanFT
+
+## Reporting
+This script uses the LeanFT reporting mechanism. Note that it sets screen capture to every step, but this only applies to LeanFT steps, not Selenium steps. For the reporting to work, the test explicitly initializes the LeanFT sdk in @before and cleans up in @after
+
+Sometimes it seems like the View last test result is disabled after running. If that occurs, the result is in the RunResults directory. It is easy to view within IntelliJ by opening a terminal, doing a 
+```
+        cd RunResults
+        google-chrome runresults.html
 ```
 
 ### Selenium Web Driver Manager
