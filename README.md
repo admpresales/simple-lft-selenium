@@ -1,7 +1,7 @@
 # LeanFT & Selenium
 This is a simple script to show using a Selenium test being augmented with LeanFT.
 
-This script has been run using the Chrome driver 2.41.  You can choose others too but just be aware i havent verified it against others.
+This script has been run using the Chrome driver 2.41.  You can choose others too but just be aware i haven't verified it against others.
 
 **NOTE:** You need to be connected to the internet the first time this is executed so the chromewebdriver gets cached to your .m2 cache
 
